@@ -1,6 +1,6 @@
 /*
  * Created by 2019/4/9
- * Author: big shot
+ * Author: zhonglongbo
  * Email: 17629272227@163.com
  */
 
@@ -52,7 +52,7 @@ std::vector<int> twoSum(std::vector<int> &nums, int target) {
     std::vector<int> answer;
     int len = nums.size();
     for (int i = 0; i < len; ++i) {
-        mp.insert(std::pair<int,int>(nums[i],i));
+        mp.insert(std::pair<int, int>(nums[i], i));
         auto ret = mp.find(target - nums[i]);
         if (ret != mp.end() && ret->second != -1 && ret->second != i) {
             answer.push_back(ret->second);
@@ -85,12 +85,11 @@ std::vector<int> twoSum(std::vector<int> &nums, int target) {
 //    return answer;
 //}
 
-
 /*
  * 测试用例
  */
 void test_twoSum() {
-    std::vector<int> array = {2,7,11,15};
+    std::vector<int> array = {2, 7, 11, 15};
     int target = 9;
     std::vector<int> ret;
     ret = twoSum(array, target);
