@@ -27,6 +27,7 @@ void printListNode(ListNode *l) {
     printf("NULL\n");
 }
 /*
+ * 题目
  * 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
  */
 
@@ -98,7 +99,7 @@ std::vector<int> printListFromTailToHead(ListNode *head) {
         ret.push_back(head->val);
         head = head->next;
     }
-    std::reverse(ret.begin(),ret.end());
+    std::reverse(ret.begin(), ret.end());
     return ret;
 }
 
