@@ -16,6 +16,9 @@ typedef struct ListNode {
     }
 } ListNode;
 
+/*
+ * 打印链表，调试时使用
+ */
 void printListNode(ListNode *l) {
     while (l) {
         printf("%d->", l->val);
