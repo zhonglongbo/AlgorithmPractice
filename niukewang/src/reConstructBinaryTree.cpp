@@ -14,7 +14,9 @@ struct TreeNode {
 
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-
+/*
+ * 打印二叉树，用做调试
+ */
 void printTreeNode(TreeNode *root) {
     if (!root) {
         return;
