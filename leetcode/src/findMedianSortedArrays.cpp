@@ -60,8 +60,6 @@ public:
         }
         return findMedianSortedArraysPart(tmp, len);
     }
-
-
 };
 
 /*
