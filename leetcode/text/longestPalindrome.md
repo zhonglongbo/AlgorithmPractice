@@ -10,13 +10,18 @@
 输出: "bb"  
 
 ## 解题思路
+方法1  
 1. 遍历字符串
 2. 遍历时，以当前字符为中心查找最大回文串
 3. 保存最大回文串的长度为max  
-此方法的时间复杂度为O(N^2)，空间复杂度为O(1)
+此方法的时间复杂度为O(N^2)，空间复杂度为O(1) 
+
+方法2  
+Manacher算法
 
 ## 代码展示
 ```cpp
+//方法1
 class Solution {
 public:
     int longestPalindromePart(std::string s, int i, int j) {
@@ -47,6 +52,53 @@ public:
         return s.substr(pos, max);
     }
 };
+//方法2
+class SolutionManacher {
+public:
+    std::string InitStr(std::string s) {
+        std::string ret;
+        int len = s.size();
+        ret.push_back('*');
+        for (int i = 0; i < len; ++i) {
+            ret.push_back('*');
+            ret.push_back(s[i]);
+        }
+        ret.push_back('*');
+        return ret;
+    }
+    /*
+     * Manacher算法
+     */
+    std::string Manacher(std::string s) {
+        std::string str = InitStr(s);
+        int len = str.size();
+        int center = 0;
+        int radius = 0;
+        int resLen = 0;
+        int resCenter = 0;
+        std::vector<int> v;
+        v.resize(len, 0);
+        for (int i = 1; i < len; ++i) {
+            v[i] = radius > i ? std::min(v[2 * center - i], radius - i) : 1;
+            while (str[i + v[i]] == str[i - v[i]]) ++v[i];
+            if (radius < i + v[i]) {
+                radius = i + v[i];
+                center = i;
+            }
+            if (resLen < v[i]) {
+                resLen = v[i];
+                resCenter = i;
+            }
+        }
+        return s.substr((resCenter - resLen) / 2, resLen - 1);
+    }
+
+    std::string longestPalindrome(std::string s) {
+        return Manacher(s);
+    }
+};
+
+
 /*
  * 测试用例
  */
