@@ -15,38 +15,24 @@ public:
             return s;
         std::string ret;
         int flag = 2 * numRows - 2;
-        int prev = 0;
-        int next = 0;
         for (int i = 0; i < numRows; ++i) {
-            int j = i;
-            if (j != 0 && j != numRows - 1) {
-                prev = j;
-                ret.push_back(s[j]);
-                while (true) {
-                    next = 2 * (numRows - i) - 2 + prev;
-                    if (next > len)
-                        break;
-                    ret.push_back(s[next]);
-                    prev = flag + prev;
-                    if (prev > len)
-                        break;
-                    ret.push_back(s[prev]);
+            for (int j = 0; j + i < len;) {
+                ret.push_back(s[j + i]);
+                if (i != 0 && i != numRows - 1 && j + flag - i < len) {
+                    ret.push_back(s[j + flag - i]);
                 }
-            } else {
-                while (j < len) {
-                    ret.push_back(s[j]);
-                    j = j + 2 * numRows - 2;
-                }
+                j = j + flag;
             }
         }
         return ret;
     }
+
 };
 
 void test_Convert() {
     Solution s;
-    std::string str = "LE";
-    std::string ret = s.convert(str, 1);
+    std::string str = "LEETCODEISHIRING";
+    std::string ret = s.convert(str, 3);
     std::cout << ret << std::endl;
 }
 
