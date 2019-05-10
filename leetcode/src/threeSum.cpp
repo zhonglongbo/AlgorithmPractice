@@ -10,8 +10,12 @@
 class Solution {
 public:
     int binSearch(std::vector<int> &nums, int start, int end, int target) {
+        if (start <= end &&( target > nums[end] || target < nums[start])) {
+            return -1;
+        }
+        int mid = 0;
         while (start <= end) {
-            int mid = (end - start) / 2 + start;
+            mid = (end - start) / 2 + start;
             if (nums[mid] == target) {
                 return mid;
             } else if (nums[mid] < target) {
