@@ -36,3 +36,7 @@ void productImplement(vector<vector<double>> dimvalue, vector<vector<double>> &r
     }
 }
 
+int main() {
+
+    return 0;
+}
